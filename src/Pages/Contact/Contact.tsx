@@ -83,7 +83,7 @@ export default function Contact() {
         <meta name="description" content="Contact Dunkin Donuts Dun " />
       </Helmet>
       <Toaster position="top-center" />
-      <section className="w-[80%] mx-auto py-28">
+      <section className="w-[90%] md:w-[80%] mx-auto py-28">
         {/* header */}
         <motion.div
           variants={topVarians}
