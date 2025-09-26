@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@400;500&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: "Roboto", "sans-serif";
+  @apply bg-white dark:bg-slate-950 text-light dark:text-dark;
+}
+h1 {
+  font-family: "Playfair Display", sans-serif;
+  @apply text-5xl md:text-6xl text-main text-center;
+}
+h3 {
+  @apply font-semibold text-xl text-light dark:text-white;
+}
+p {
+  @apply text-slate-600 dark:text-slate-400;
+}
+hr {
+  @apply dark:border-slate-700;
+}
+/* product */
+.card {
+  @apply border border-slate-300 dark:border-slate-700 rounded-lg flex flex-col justify-center cursor-pointer items-center p-3 hover:border-main duration-500 relative h-full;
+}
+.discout {
+  @apply absolute top-1 right-1 flex justify-center items-center h-5 bg-main text-white rounded-lg p-3;
+}
+.contain {
+  @apply w-[90%] mx-auto;
+}
+.active-link {
+  @apply text-main;
+}
+.nav-link {
+  @apply text-xl font-medium;
+}
+.social-media {
+  @apply flex justify-center items-center w-10 h-10 rounded-full border border-light dark:border-dark hover:border-none  hover:text-white transition-all duration-500 cursor-pointer;
+}
+.loader {
+  width: 54px;
+  height: 54px;
+  border: 5px dotted #ef6a00;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .slide-home {
+    background-image: url("assets/Images/Home/imgHero_mWeb@2x.png");
+  }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .slide-home {
+    background-image: url("assets/Images/Home/imgHero_mWeb@2x.png");
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .slide-home {
+    background-image: url("assets/Images/Home/imgHero_DesktopTab@2x.png");
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .slide-home {
+    background-image: url("assets/Images/Home/imgHero_Desktop@2x.png");
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .slide-home {
+    background-image: url("assets/Images/Home/imgHero_Desktop@2x.png");
+  }
+}
