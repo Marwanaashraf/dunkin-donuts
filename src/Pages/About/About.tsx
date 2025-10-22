@@ -1,7 +1,11 @@
 import { Helmet } from "react-helmet";
 import dunkin from "../../assets/Images/About/Dunkin_Brands_headquarters_sign.jpg";
 import { motion } from "framer-motion";
-import { leftVarians, rightVarians, topVarians } from "../../assets/variants/variants";
+import {
+  leftVarians,
+  rightVarians,
+  topVarians,
+} from "../../assets/variants/variants";
 export default function About() {
   return (
     <>

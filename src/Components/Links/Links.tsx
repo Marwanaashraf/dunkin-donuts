@@ -47,7 +47,7 @@ export default function Links({ type, setSlider }: TLinks) {
       className={
         type === "nav"
           ? "list-none flex justify-evenly "
-          : "list-none flex flex-col justify-evenly space-x-1 h-60"
+          : "list-none flex flex-col justify-evenly  h-60"
       }
     >
       {links.map((link, i) => {

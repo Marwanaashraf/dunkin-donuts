@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFoodsByCategory } from "../../../Apis/getFoods";
 import { AppDispatch, RootState } from "../../../Redux/store";
 import { getFoods } from "../../../Redux/FoodSlice";
 import Loading from "../../../Components/Loading/Loading";
-import { fCategories } from "../../../Enums/FoodCategories";
+import { fCategories } from "../../../Enums/enums";
 import { Dount, Sandwitch } from "../../../Icons";
 import FoodCard from "../../../Components/FoodCard/FoodCard";
-import { ProductType } from "../../../Enums/ProductType";
+import { ProductType } from "../../../Enums/enums";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { topVarians } from "../../../assets/variants/variants";
+import { IFood } from "../../../Interfaces/food";
 export default function Foods() {
   let { foods, isLoading } = useSelector((state: RootState) => state.food);
-  let [category, setCategory] = useState(fCategories.SANDWITCHES);
+  let [category, setCategory] = useState(fCategories.DONUTS);
+  let [displayedFoods, setDisplayedFoods] = useState<IFood[]>([]);
   let categories = Object.values(fCategories);
+  function filterData(item: fCategories) {
+    let filterFood = foods.filter((ele) => ele.category === item);
+    setDisplayedFoods(filterFood);
+  }
   const handleCategory = (item: fCategories) => {
     setCategory(item);
-    disp(getFoods(item));
+    filterData(item);
   };
   let disp = useDispatch<AppDispatch>();
   useEffect(() => {
     disp(getFoods());
   }, []);
+  useEffect(() => {
+    filterData(fCategories.DONUTS);
+  }, [foods]);
   return (
     <>
       <Helmet>
@@ -90,11 +98,15 @@ export default function Foods() {
             variants={topVarians}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true , amount: 0.3}}
-            transition={{ duration: 1, delay: 0.7, staggerChildren: 0.15 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{
+              duration: 1,
+              delay: 0.7,
+              staggerChildren: 0.15,
+            }}
             className="grid grid-cols-2 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 my-8 gap-5"
           >
-            {foods.map((item, i) => {
+            {displayedFoods.map((item, i) => {
               return (
                 <motion.div
                   variants={topVarians}

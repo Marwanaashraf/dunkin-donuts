@@ -1,32 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { dCategories } from "../../../Enums/DrinkCategories";
+import { dCategories } from "../../../Enums/enums";
 import { AppDispatch, RootState } from "../../../Redux/store";
 import { FrozenICon, HotDrink, IceDrink, TeaIcon } from "../../../Icons";
 import Loading from "../../../Components/Loading/Loading";
-import { ProductType } from "../../../Enums/ProductType";
 import DrinkCard from "../../../Components/DrinkCard/DrinkCard";
 import { getDrinks } from "../../../Redux/DrinkSlice";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { topVarians } from "../../../assets/variants/variants";
+import { IDrink } from "../../../Interfaces/drink";
 export default function Drinks() {
   let disp = useDispatch<AppDispatch>();
   // active category
   let [category, setCategory] = useState<dCategories>(dCategories.HOT);
+
   // drink state
   let { isLoading, drinks } = useSelector((state: RootState) => state.drink);
+  let [displayedDrinks, setDisplayedDrinks] = useState<IDrink[]>([]);
   // drinks categories
   let categories = Object.values(dCategories);
 
   let handleCategory = (item: dCategories) => {
     setCategory(item);
-    disp(getDrinks(item));
+    let filterDrinks = drinks?.filter((ele) => ele.category === item);
+    setDisplayedDrinks(filterDrinks);
   };
-  
+
   useEffect(() => {
-    disp(getDrinks(category));
+    disp(getDrinks());
   }, []);
+  useEffect(() => {
+    setDisplayedDrinks(
+      drinks?.filter((ele) => ele.category === dCategories.HOT)
+    );
+  }, [drinks]);
   return (
     <>
       <Helmet>
@@ -104,15 +112,15 @@ export default function Drinks() {
             variants={topVarians}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{
               duration: 1,
               delay: 0.7,
-              staggerChildren: 0.2,
+              staggerChildren: 0.15,
             }}
             className="grid grid-cols-2 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 my-8 gap-5"
           >
-            {drinks.map((drink, i) => {
+            {displayedDrinks.map((drink, i) => {
               return (
                 <motion.div
                   variants={topVarians}

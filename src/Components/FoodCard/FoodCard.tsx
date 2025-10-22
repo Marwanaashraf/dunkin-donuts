@@ -1,12 +1,19 @@
 import React from "react";
 import { IFood } from "../../Interfaces/food";
+import { useNavigate } from "react-router-dom";
 type TFoodProps = {
   product: IFood;
   productType: string;
 };
 export default function FoodCard({ product, productType }: TFoodProps) {
+  let navigate = useNavigate();
   return (
-    <div className="card group">
+    <div
+      onClick={() => {
+        navigate(`/foods/${product.id}`);
+      }}
+      className="card group"
+    >
       {/* image */}
       <img
         className="w-28 group-hover:scale-[1.1] duration-500"

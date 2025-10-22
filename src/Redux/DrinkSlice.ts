@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IDrinkState } from "../Interfaces/DrinkState";
-import { getDrinksByCategory } from "../Apis/getDrinks";
+import { getAllDrinks } from "../Apis/getDrinks";
 export let getDrinks = createAsyncThunk(
   "drinks/getDrinks",
-  getDrinksByCategory
+  getAllDrinks
 );
 let initialState: IDrinkState = {
   isLoading: true,

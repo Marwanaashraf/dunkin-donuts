@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IFoodState } from "../Interfaces/FoodState";
-import { getFoodsByCategory } from "../Apis/getFoods";
+import { getAllFoods } from "../Apis/getFoods";
 let initialState: IFoodState = {
   foods: [],
   isLoading: false,
 };
-export let getFoods = createAsyncThunk("foods/getFoods", getFoodsByCategory);
+export let getFoods = createAsyncThunk("foods/getFoods", getAllFoods);
 let FoodSlice = createSlice({
   name: "foods",
   initialState,

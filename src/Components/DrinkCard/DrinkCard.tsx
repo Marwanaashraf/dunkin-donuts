@@ -1,21 +1,33 @@
+import { useNavigate } from "react-router-dom";
 import { IDrink } from "../../Interfaces/drink";
 type TDrinkProps = {
   product: IDrink;
 };
 export default function DrinkCard({ product }: TDrinkProps) {
+  let navigate = useNavigate();
+
   return (
-    <div className="card group">
+    <div
+      onClick={() => {
+        navigate(`/drinks/${product.id}`);
+      }}
+      className="card group"
+    >
       {/* image */}
-      {product.discount == 10? <img
-        className="w-60 group-hover:scale-[1.1] duration-500 "
-        src={product.image}
-        alt={product.title}
-      /> :  <img
-        className="w-36 group-hover:scale-[1.1] duration-500"
-        src={product.image}
-        alt={product.title}
-      />}
-     
+      {product.discount == 10 ? (
+        <img
+          className="w-60 group-hover:scale-[1.1] duration-500 "
+          src={product.image}
+          alt={product.title}
+        />
+      ) : (
+        <img
+          className="w-36 group-hover:scale-[1.1] duration-500"
+          src={product.image}
+          alt={product.title}
+        />
+      )}
+
       {/* details */}
       <div className="mt-4">
         {/* title */}

@@ -1,5 +1,6 @@
-import { dCategories } from "../Enums/DrinkCategories";
+import { dCategories } from "../Enums/enums";
 export interface IDrink {
+  id: string;
   title: string;
   subTitle: string;
   ingrdients: string;

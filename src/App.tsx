@@ -1,14 +1,15 @@
-import Menu from "./Pages/Menu/Menu";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Pages/Layout/Layout";
 import Home from "./Pages/Home/Home";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
-import NotFound from "./Pages/NotFound/NotFound";
 import Foods from "./Pages/Menu/Foods/Foods";
 import Drinks from "./Pages/Menu/Drinks/Drinks";
 import { Provider } from "react-redux";
 import { configStore } from "./Redux/store";
+import DrinkDetails from "./Pages/DrinkDetails/DrinkDetails";
+import NotFoundPage from "./Pages/NotFound/NotFound";
+import FoodDetails from "./Pages/FoodDetails/FoodDetails";
 
 export default function App() {
   let routes = createBrowserRouter([
@@ -20,8 +21,10 @@ export default function App() {
         { path: "/about", element: <About /> },
         { path: "/foods", element: <Foods /> },
         { path: "/drinks", element: <Drinks /> },
+        { path: "/drinks/:id", element: <DrinkDetails /> },
+        { path: "/foods/:id", element: <FoodDetails /> },
         { path: "/contact", element: <Contact /> },
-        { path: "*", element: <NotFound /> },
+        { path: "*", element: <NotFoundPage /> },
       ],
     },
   ]);

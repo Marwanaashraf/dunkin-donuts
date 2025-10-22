@@ -1,4 +1,5 @@
 export interface IFood {
+  id:string
   title: string;
   subTitle: string;
   ingrdients: string;
